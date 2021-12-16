@@ -28,7 +28,8 @@ workflows:
             xcremotecache/xcprepare integrate --input XcodeBenchmark.xcodeproj --mode consumer --consumer-eligible-configurations Debug --consumer-eligible-platforms 'iphoneos'
           elif [ "${XC_REMOTE_CACHE_MODE}" = "producer" ]; then
             echo "Initialize XCRemoteCache in producer mode"
-            xcremotecache/xcprepare integrate --input XcodeBenchmark.xcodeproj --mode producer --final-producer-target XcodeBenchmark
+            xcremotecache/xcprepare integrate --input XcodeBenchmark.xcodeproj --mode producer 
+            # --final-producer-target XcodeBenchmark
           else
             echo "XC Remote Cache mode is not specified or invalid (XC_REMOTE_CACHE_MODE: \"${XC_REMOTE_CACHE_MODE}\"). Skip setting up cache"
           fi
