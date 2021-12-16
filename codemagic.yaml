@@ -8,8 +8,8 @@ workflows:
         - XCRemoteCache
     scripts:
       - name: Install XCREmoteCache
-        working_directory: $PROJECT_DIR
         script: |
+          set -ex
           if [ "${XC_REMOTE_CACHE_MODE}" != "consumer" ] && [ "${XC_REMOTE_CACHE_MODE}" != "producer" ]; then
             echo "Skip setting up XC Remote Cache"
             exit 0
@@ -23,7 +23,7 @@ workflows:
           - $XC_REMOTE_CACHE_ADDRESS
           EOF
       - name: Setup XCREmoteCache
-        working_directory: $PROJECT_DIR
+        set -ex
         script: |
           if [ "${XC_REMOTE_CACHE_MODE}" = "consumer" ]; then
             echo "Initialize XCRemoteCache in consumer mode"
