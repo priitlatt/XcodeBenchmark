@@ -17,7 +17,7 @@ if [ -n "$PATH_TO_PROJECT" ]; then
 	xcodebuild -workspace "$PATH_TO_PROJECT" \
 			   -scheme XcodeBenchmark \
 			   -destination generic/platform=iOS \
-			   build | xcpretty
+			   build
 # 			   -derivedDataPath "$PATH_TO_DERIVED" \
 
 	echo "System Version:" "$(sw_vers -productVersion)"
