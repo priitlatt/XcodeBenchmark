@@ -23,8 +23,8 @@ workflows:
           - $XC_REMOTE_CACHE_ADDRESS
           EOF
       - name: Setup XCREmoteCache
-        set -ex
         script: |
+          set -ex
           if [ "${XC_REMOTE_CACHE_MODE}" = "consumer" ]; then
             echo "Initialize XCRemoteCache in consumer mode"
             xcremotecache/xcprepare integrate --input XcodeBenchmark.xcodeproj --mode consumer --consumer-eligible-configurations Debug --consumer-eligible-platforms 'iphoneos'
