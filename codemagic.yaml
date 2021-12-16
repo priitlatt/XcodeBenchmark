@@ -35,4 +35,6 @@ workflows:
             echo "XC Remote Cache mode is not specified or invalid (XC_REMOTE_CACHE_MODE: \"${XC_REMOTE_CACHE_MODE}\"). Skip setting up cache"
           fi
       - name: Run benchmark
-        script: sh benchmark.sh
+        script: sh benchmark.sh > /tmp/benchmark.log
+    artifacts:
+      - /tmp/benchmark.log
