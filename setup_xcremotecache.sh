@@ -5,8 +5,11 @@ XCODE_PROJECT_PATH="${2}"
 
 echo "Configure XCRemoteCache for ${XCODE_PROJECT_PATH}"
 
+ACTUAL_REPO_URL=$(grep -o 'url = \(.*\)' .git/config | awk '{print $NF}')
+REPO_SUFFIX=$(dirname "${XCODE_PROJECT_PATH}" | sed 's/[\.\/]$//')
+
 cat > $(dirname "${XCODE_PROJECT_PATH}")/.rcinfo << EOF
-primary_repo: $(grep -o 'url = \(.*\)' .git/config | awk '{print $NF}')$(echo "${XCODE_PROJECT_PATH}" | sed 's/^\.//')
+primary_repo: $(echo "${ACTUAL_REPO_URL}"/"${REPO_SUFFIX}" )
 cache_addresses:
 - $XC_REMOTE_CACHE_ADDRESS
 # - http://localhost:8080/cache

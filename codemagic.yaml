@@ -16,7 +16,8 @@ workflows:
           ./install_xcremotecache.sh
       - name: Setup XCREmoteCache
         script: |
-          find . -type d -name "*.xcodeproj" -exec ./setup_xcremotecache.sh "${XC_REMOTE_CACHE_MODE}" {} \;
+          ./setup_xcremotecache.sh "${XC_REMOTE_CACHE_MODE}" "XcodeBenchmark.xcodeproj"
+          ./setup_xcremotecache.sh "${XC_REMOTE_CACHE_MODE}" "Pods/Pods.xcodeproj"
       - name: Run benchmark
         script: sh benchmark.sh > /tmp/benchmark.log
     artifacts:
