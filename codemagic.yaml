@@ -18,7 +18,6 @@ workflows:
         script: |
           find . -type d -name "*.xcodeproj" -exec ./setup_xcremotecache.sh "${XC_REMOTE_CACHE_MODE}" {} \;
       - name: Run benchmark
-        script: sh benchmark.sh
-        # > /tmp/benchmark.log
+        script: sh benchmark.sh > /tmp/benchmark.log
     artifacts:
       - /tmp/benchmark.log
