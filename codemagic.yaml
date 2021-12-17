@@ -13,26 +13,12 @@ workflows:
             echo "Skip setting up XC Remote Cache"
             exit 0
           fi
-          wget https://github.com/spotify/XCRemoteCache/releases/download/v0.3.0/XCRemoteCache-macOS-x86_64-v0.3.0.zip
-          unzip XCRemoteCache-macOS-x86_64-v0.3.0.zip -d xcremotecache
-          xattr -d -r com.apple.quarantine xcremotecache/xc*
-          cat > .rcinfo << EOF
-          primary_repo: $(grep -o 'url = \(.*\)' $FCI_BUILD_DIR/.git/config | awk '{print $NF}')
-          cache_addresses:
-          - $XC_REMOTE_CACHE_ADDRESS
-          EOF
+          ./install_xcremotecache.sh
       - name: Setup XCREmoteCache
         script: |
-          if [ "${XC_REMOTE_CACHE_MODE}" = "consumer" ]; then
-            echo "Initialize XCRemoteCache in consumer mode"
-            xcremotecache/xcprepare integrate --input XcodeBenchmark.xcodeproj --mode consumer --consumer-eligible-configurations Debug --consumer-eligible-platforms 'iphoneos'
-          elif [ "${XC_REMOTE_CACHE_MODE}" = "producer" ]; then
-            echo "Initialize XCRemoteCache in producer mode"
-            xcremotecache/xcprepare integrate --input XcodeBenchmark.xcodeproj --mode producer --final-producer-target XcodeBenchmark
-          else
-            echo "XC Remote Cache mode is not specified or invalid (XC_REMOTE_CACHE_MODE: \"${XC_REMOTE_CACHE_MODE}\"). Skip setting up cache"
-          fi
+          find . -type d -name "*.xcodeproj" -exec ./setup_xcremotecache.sh "${XC_REMOTE_CACHE_MODE}" {} \;
       - name: Run benchmark
-        script: sh benchmark.sh > /tmp/benchmark.log
+        script: sh benchmark.sh
+        # > /tmp/benchmark.log
     artifacts:
       - /tmp/benchmark.log
