@@ -1,24 +1,6 @@
 workflows:
   run-benchmark:
     name: Run benchmark
-    instance_type: mac_pro
-    max_build_duration: 60
-    environment:
-      groups:
-        - XCRemoteCache
+    instance_type: mac_mini_m1
     scripts:
-      - name: Install XCREmoteCache
-        script: |
-          if [ "${XC_REMOTE_CACHE_MODE}" != "consumer" ] && [ "${XC_REMOTE_CACHE_MODE}" != "producer" ]; then
-            echo "Skip setting up XC Remote Cache"
-            exit 0
-          fi
-          ./install_xcremotecache.sh
-      - name: Setup XCREmoteCache
-        script: |
-          ./setup_xcremotecache.sh "${XC_REMOTE_CACHE_MODE}" "XcodeBenchmark.xcodeproj"
-          ./setup_xcremotecache.sh "${XC_REMOTE_CACHE_MODE}" "Pods/Pods.xcodeproj"
-      - name: Run benchmark
-        script: sh benchmark.sh > /tmp/benchmark.log
-    artifacts:
-      - /tmp/benchmark.log
+      - sh benchmark.sh
