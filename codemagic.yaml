@@ -2,10 +2,13 @@ workflows:
   run-benchmark-m1:
     instance_type: mac_mini_m1
     scripts:
-#      - sh benchmark.sh
       - sh benchmark.sh > /tmp/benchmark.log
     artifacts:
       - /tmp/benchmark.log
+  run-benchmark-m1-logs:
+    instance_type: mac_mini_m1
+    scripts:
+     - sh benchmark.sh
   run-benchmark-mac-pro:
     instance_type: mac_pro
     scripts:
