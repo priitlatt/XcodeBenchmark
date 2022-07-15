@@ -15,6 +15,25 @@ workflows:
       - sh benchmark.sh > /tmp/benchmark.log
     artifacts:
       - /tmp/benchmark.log
+  logs:
+    scripts:
+      - |
+        #!/usr/bin/env python3
+        import time
+        lorem_ipsum = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+        def f():
+            chunk = lorem_ipsum
+            while len(chunk) < 2000:
+                chunk += f" {lorem_ipsum}"
+
+            line_length = int(len(chunk) / 30)
+            for i in range(0, len(chunk), line_length):
+                print("".join(chunk[i : i + line_length]))
+        if __name__ == "__main__":
+            for _ in range(20000):
+                f()
+                time.sleep(0.1)
+
   emit-logs:
     scripts:
       - |
