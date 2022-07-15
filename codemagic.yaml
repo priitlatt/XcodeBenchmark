@@ -15,3 +15,43 @@ workflows:
       - sh benchmark.sh > /tmp/benchmark.log
     artifacts:
       - /tmp/benchmark.log
+  emit-logs:
+    scripts:
+      - |
+        #/usr/bin/env python3
+        import random
+        import time
+
+        lorem_ipsum = """Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur vel ligula lectus. Quisque eget nunc justo.
+         Ut bibendum lacinia maximus. Aliquam ornare, ipsum eget ornare ullamcorper, nisl ante commodo est, nec volutpat quam neque ege
+        t purus. Maecenas sed nibh at lacus interdum pellentesque scelerisque ut ex. Nunc egestas nunc nisl, ac aliquet tortor rutrum u
+        t. Proin vulputate metus ut cursus viverra. Praesent purus lorem, gravida sit amet enim suscipit, dapibus congue arcu. Proin ne
+        c consequat ligula, quis fringilla diam. Nulla nec convallis tortor. Mauris id orci ullamcorper, facilisis turpis nec, porta di
+        am. Duis vitae vulputate libero. Aenean mattis, leo sed convallis eleifend, quam eros pellentesque velit, ac porta est ante eu
+        urna. Sed mattis ultricies dapibus. Duis ut consequat arcu. Aenean tristique dictum posuere. Phasellus ac diam lacus. Aenean co
+        nsectetur vitae augue sed mattis. Pellentesque velit purus, bibendum eu rhoncus a, fringilla a nisl. Quisque facilisis urna fel
+        is. Aenean pretium massa sed orci pharetra, quis pellentesque dui dignissim. Pellentesque habitant morbi tristique senectus et
+        netus et malesuada fames ac turpis egestas. Nulla ante neque, efficitur eu arcu ut, luctus aliquam augue. Nulla in nunc ac sem
+        maximus bibendum. Integer at eleifend sapien. Vestibulum sapien justo, tempor mollis facilisis sed, volutpat non orci. Proin id
+         velit ex. Aenean cursus vulputate mollis. Fusce fringilla nec ante et iaculis. Donec ac ipsum eu nisi consequat scelerisque eu
+         eget felis. In malesuada tellus nunc, vitae aliquam ligula venenatis in. Fusce ultrices velit id enim sagittis fermentum. Sed
+        pretium mauris ligula, sit amet interdum velit accumsan in. Morbi imperdiet tellus lorem, ultrices aliquam diam consequat eget.
+         Integer non nunc cursus, dictum diam tincidunt, viverra felis. Pellentesque eu tortor ut magna aliquet hendrerit. Vivamus eges
+        tas justo semper nisl ornare, in egestas velit malesuada. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posu
+        ere cubilia curae; Nulla nec ante bibendum, pulvinar sem quis, tempor metus. Pellentesque lobortis tincidunt felis eu pellentes
+        que. Ut euismod, eros nec lobortis pharetra, lacus tellus porta est, at venenatis purus orci eget mauris. Sed placerat aliquet
+        orci vitae condimentum. Maecenas metus erat, ultrices quis consequat sit amet, viverra in ex. Phasellus fermentum et sapien non
+         vestibulum. Duis consectetur nibh vitae faucibus semper. Vestibulum non dui gravida, finibus purus eu, pulvinar purus. Aliquam
+         vehicula dolor est, eget laoreet velit vehicula vitae. Suspendisse a lectus nisl. Vestibulum sed nibh ipsum. Curabitur quis du
+        i vel orci rhoncus ultrices. Fusce finibus orci egestas nisi tempus, non ornare purus tempus. Cras ut interdum tortor. Aliquam
+        vel lacus in orci finibus lobortis. In a consequat ipsum. Nulla in nunc fermentum, interdum eros at, feugiat mauris. Maecenas l
+        uctus lectus a arcu sodales, ac pulvinar risus rutrum. Sed volutpat quam vel venenatis gravida. Donec urna neque, accumsan sit
+        amet nunc sed, molestie bibendum magna. Vivamus dictum elit non pellentesque dignissim. Sed mattis quis diam ac eleifend. Etiam
+         tempor vitae nisi et placerat."""
+
+        sentences = lorem_ipsum.split(". ")
+
+        for _ in range(80000):
+            print(random.choice(sentences))
+            time.sleep(0.01)
+
