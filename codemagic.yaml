@@ -18,7 +18,7 @@ workflows:
   emit-logs:
     scripts:
       - |
-        #/usr/bin/env python3
+        #!/usr/bin/env python3
         import random
         import time
 
@@ -51,7 +51,7 @@ workflows:
 
         sentences = lorem_ipsum.split(". ")
 
-        for _ in range(80000):
+        for _ in range(100000):
             print(random.choice(sentences))
-            time.sleep(0.01)
+            time.sleep(0.0001)
 
