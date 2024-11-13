@@ -1,0 +1,16 @@
+workflows:
+  run-benchmark:
+    inputs:
+      xcode:
+        description: Xcode version
+        type: choice
+        options: [16.2, 16.1, 16.0]
+    environment:
+      xcode: "${{ inputs.xcode }}"
+    labels:
+      - Xcode ${{ inputs.xcode }}
+    scripts:
+      - echo "Using Xcode ${{ inputs.xcode }}"
+      - sh benchmark.sh > /tmp/benchmark.log
+    artifacts:
+      - /tmp/benchmark.log
