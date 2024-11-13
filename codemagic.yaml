@@ -11,6 +11,6 @@ workflows:
       - Xcode ${{ inputs.xcode }}
     scripts:
       - echo "Using Xcode ${{ inputs.xcode }}"
-      - sh benchmark.sh > /tmp/benchmark.log
+      - time sh benchmark.sh > /tmp/benchmark.log
     artifacts:
       - /tmp/benchmark.log
