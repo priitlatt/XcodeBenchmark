@@ -31,6 +31,7 @@ workflows:
     cache:
       cache_paths:
         - /tmp/xcode-benchmark-compilation-cache
+        - $HOME/Library/Developer/Xcode/DerivedData/CompilationCache.noindex
     scripts:
       - echo "Using Xcode ${{ inputs.xcode }}"
       - time sh benchmark-cache.sh > /tmp/benchmark.log

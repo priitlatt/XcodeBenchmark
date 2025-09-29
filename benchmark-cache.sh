@@ -19,8 +19,8 @@ if [ -n "$PATH_TO_PROJECT" ]; then
 			   -destination generic/platform=iOS \
 			   -derivedDataPath "$PATH_TO_DERIVED" \
 			   build \
-			   COMPILATION_CACHE_CAS_PATH=/tmp/xcode-benchmark-compilation-cache \
 			   COMPILATION_CACHE_ENABLE_CACHING=True
+			#    COMPILATION_CACHE_CAS_PATH=/tmp/xcode-benchmark-compilation-cache \
 
 	echo "System Version:" "$(sw_vers -productVersion)"
 	xcodebuild -version | grep "Xcode"
