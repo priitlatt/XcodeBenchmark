@@ -16,7 +16,9 @@ workflows:
     scripts:
       - echo "Using Xcode ${{ inputs.xcode }}"
       - time sh benchmark.sh > /tmp/benchmark.log
-      - cat /tmp/benchmark.log
+      - script: cat /tmp/benchmark.log
+        when:
+          condition: true
     artifacts:
       - /tmp/benchmark.log
 
@@ -32,6 +34,8 @@ workflows:
     scripts:
       - echo "Using Xcode ${{ inputs.xcode }}"
       - time sh benchmark-cache.sh > /tmp/benchmark.log
-      - cat /tmp/benchmark.log
+      - script: cat /tmp/benchmark.log
+        when:
+          condition: true
     artifacts:
       - /tmp/benchmark.log

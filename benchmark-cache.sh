@@ -1,6 +1,6 @@
 readonly PATH_TO_PROJECT=$(pwd)/XcodeBenchmark.xcworkspace
 readonly PATH_TO_DERIVED=$(pwd)/DerivedData
-readonly CACHE_PATH="${COMPILATION_CACHE_PATH:?}"
+
 clear
 
 echo "Preparing environment"
@@ -19,7 +19,7 @@ if [ -n "$PATH_TO_PROJECT" ]; then
 			   -destination generic/platform=iOS \
 			   -derivedDataPath "$PATH_TO_DERIVED" \
 			   build \
-			   COMPILATION_CACHE_CAS_PATH="${CACHE_PATH}" \
+			   COMPILATION_CACHE_CAS_PATH=/tmp/xcode-benchmark-compilation-cache \
 			   COMPILATION_CACHE_ENABLE_CACHING=True
 
 	echo "System Version:" "$(sw_vers -productVersion)"
