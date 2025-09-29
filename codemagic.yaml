@@ -1,11 +1,14 @@
+definitions:
+  inputs: &inputs
+    xcode:
+      description: Xcode version
+      type: choice
+      options: [26.0, 16.4, 16.3, 16.2, 16.1, 16.0, 15.3]
+      default: 26.0
+      
 workflows:
   run-benchmark:
-    inputs:
-      xcode:
-        description: Xcode version
-        type: choice
-        options: [26.0, 16.4, 16.3, 16.2, 16.1, 16.0, 15.3]
-        default: 26.0
+    inputs: *inputs
     environment:
       xcode: "${{ inputs.xcode }}"
     labels:
@@ -13,5 +16,22 @@ workflows:
     scripts:
       - echo "Using Xcode ${{ inputs.xcode }}"
       - time sh benchmark.sh > /tmp/benchmark.log
+      - cat /tmp/benchmark.log
+    artifacts:
+      - /tmp/benchmark.log
+
+  run-benchmark-cache:
+    inputs: *inputs
+    environment:
+      xcode: "${{ inputs.xcode }}"
+    labels:
+      - Xcode ${{ inputs.xcode }}
+    cache:
+      cache_paths:
+        - /tmp/xcode-benchmark-compilation-cache
+    scripts:
+      - echo "Using Xcode ${{ inputs.xcode }}"
+      - time sh benchmark-cache.sh > /tmp/benchmark.log
+      - cat /tmp/benchmark.log
     artifacts:
       - /tmp/benchmark.log
