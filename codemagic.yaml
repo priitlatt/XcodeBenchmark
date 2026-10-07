@@ -3,8 +3,8 @@ definitions:
     xcode:
       description: Xcode version
       type: choice
-      options: [26.0, 16.4, 16.3, 16.2, 16.1, 16.0, 15.3]
-      default: 26.0
+      options: [27.2, 27.1, 27.0, 26.6, 26.5, 26.4, 26.3, 26.2, 26.1, 26.0, 16.4, 16.3, 16.2, 16.1, 16.0]
+      default: 27.1
       
 workflows:
   run-benchmark:
